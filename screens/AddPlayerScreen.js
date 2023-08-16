@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addPlayer } from "../redux/playerActions";
-import { globalStyles, screenWidth } from "../styles/CommonStyles";
+import { globalStyles } from "../styles/CommonStyles";
 import { countryCodes } from "../common/countryData";
 import { Picker } from "@react-native-picker/picker";
 
