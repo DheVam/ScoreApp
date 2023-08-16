@@ -8,11 +8,13 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addPlayer } from "../redux/playerActions";
-import { globalStyles } from "../styles/CommonStyles";
+import { globalStyles, screenWidth } from "../styles/CommonStyles";
+import { countryCodes } from "../common/countryData";
+import { Picker } from "@react-native-picker/picker";
 
 const AddPlayerScreen = ({ navigation, addPlayer }) => {
   const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState(null);
   const [score, setScore] = useState("");
 
   const savePlayer = () => {
@@ -30,7 +32,7 @@ const AddPlayerScreen = ({ navigation, addPlayer }) => {
 
   return (
     <View style={globalStyles.container}>
-      <View style={styles.inputContainer}>
+      <View style={globalStyles.inputContainer}>
         <TextInput
           placeholder="Name"
           value={name}
@@ -38,13 +40,7 @@ const AddPlayerScreen = ({ navigation, addPlayer }) => {
           maxLength={15}
           style={[globalStyles.textInput]}
         />
-        <TextInput
-          placeholder="Country"
-          value={country}
-          onChangeText={setCountry}
-          maxLength={2}
-          style={[globalStyles.textInput]}
-        />
+
         <TextInput
           placeholder="Score"
           value={score}
@@ -52,9 +48,25 @@ const AddPlayerScreen = ({ navigation, addPlayer }) => {
           keyboardType="numeric"
           style={[globalStyles.textInput]}
         />
+        <View style={[globalStyles.textInput, styles.picker]}>
+          <Picker
+            selectedValue={country}
+            onValueChange={(value) => setCountry(value)}
+            mode="dropdown"
+          >
+            <Picker.Item
+              label="Select Country"
+              value=""
+              style={{ color: "#8e8e8e" }}
+            />
+            {countryCodes.map((item, index) => (
+              <Picker.Item key={index} label={item.label} value={item.value} />
+            ))}
+          </Picker>
+        </View>
         <TouchableOpacity
           onPress={savePlayer}
-          style={[globalStyles.button, styles.button]}
+          style={[globalStyles.button, globalStyles.mt20]}
         >
           <Text style={globalStyles.buttonText}>Save Player</Text>
         </TouchableOpacity>
@@ -72,12 +84,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(AddPlayerScreen);
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    flex: 1,
-    gap: 10,
-    alignItems: "center",
-  },
-  button: {
-    marginTop: 20,
+  picker: {
+    paddingLeft: 0,
   },
 });

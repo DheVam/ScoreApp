@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet } from "react-native";
 
-const screenWidth = Dimensions.get("window").width;
+export const screenWidth = Dimensions.get("window").width;
+export const screenHeight = Dimensions.get("window").height;
 
 export const globalStyles = StyleSheet.create({
   debug: {
@@ -29,9 +30,17 @@ export const globalStyles = StyleSheet.create({
   },
   textInput: {
     width: screenWidth * 0.8,
-    height: 40,
+    height: 50,
     backgroundColor: "#fff",
     borderRadius: 10,
     paddingLeft: 10,
+  },
+  inputContainer: {
+    flex: 1,
+    gap: 10,
+    alignItems: "center",
+  },
+  mt20: {
+    marginTop: 20,
   },
 });

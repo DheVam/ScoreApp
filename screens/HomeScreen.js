@@ -1,13 +1,20 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import { globalStyles } from "../styles/CommonStyles";
+import {
+  globalStyles,
+  screenWidth,
+  screenHeight,
+} from "../styles/CommonStyles";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={globalStyles.container}>
-      <Text style={styles.welcomeText}>Welcome!</Text>
+      <Text style={styles.welcomeText}>Welcome To The Score App</Text>
       <View style={styles.ImageContainer}>
-        <Image source={require("../assets/HomeImage.png")} />
+        <Image
+          source={require("../assets/HomeImage.png")}
+          style={styles.heroImage}
+        />
         <Text style={styles.introText}>Universal Score Application</Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -34,11 +41,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
     color: "#fff",
-    flex: 0.1,
+    flex: 0.05,
   },
   ImageContainer: {
-    flex: 0.8,
+    flex: 0.85,
     alignItems: "center",
+  },
+  heroImage: {
+    width: screenWidth * 0.8,
+    height: screenHeight * 0.5,
   },
   buttonContainer: {
     flex: 0.1,
@@ -51,8 +62,8 @@ const styles = StyleSheet.create({
   introText: {
     color: "#fff",
     textAlign: "left",
-    width: 140,
     fontSize: 25,
+    marginTop: 15,
   },
 });
 

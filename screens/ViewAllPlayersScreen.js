@@ -73,10 +73,9 @@ const ViewAllPlayersScreen = ({ players, deletePlayer, navigation }) => {
             renderItem={({ item }) => (
               <View style={styles.listContainer}>
                 <TouchableOpacity
-                // onPress={() => {
-                //   console.log(item); // Debugging: Check if item is logged correctly
-                //   navigation.navigate("EditPlayer", { player: item });
-                // }}
+                  onPress={() => {
+                    navigation.navigate("EditPlayer", { player: item });
+                  }}
                 >
                   <Text style={[styles.listItem, styles.nameW]}>
                     {item.name}
@@ -154,10 +153,6 @@ const styles = StyleSheet.create({
     width: 25,
     height: 30,
   },
-  separator: {
-    height: 1,
-    backgroundColor: "#fff",
-  },
   scoreW: {
     width: screenWidth * 0.3,
   },
@@ -172,6 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     marginBottom: 10,
+    gap: 5,
   },
   sortButton: {
     paddingVertical: 5,
